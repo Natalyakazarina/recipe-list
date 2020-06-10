@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-y: hidden;
+}
+
+.main-block {
+  display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    max-height: 70%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.cutlery {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 5px;
+}
+
+.list-group {
+  overflow: auto;
+  height: 400px;
+  border-radius: 5%;
+}
+
+.picture {
+  border-radius: 10%;
+  display: block;
+  margin: 30px auto;
+}
+
+.icon {
+  margin-right: 20px;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.removed {
+  width: 300px;
+}
+
+.add-form {
+  text-align: left;
+  max-width: 70%;
+  margin: auto;
+}
+
+.buttons-changes {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.changes {
+  width: 150px;
+}
+
+.label {
+  font-weight: 500;
+  font-style: italic;
+}
+
+.Navlinks {
+  color: #fff;
+  text-decoration: none;
+}
+
+.Navlinks:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links {
+  color: #000;
+  text-decoration: none;
+}
+
+.nav-links:hover {
+  color: rgb(78, 15, 114);
+  text-decoration: none;
+}
+
+.Navlinks:active {
+  color: teal;
+  text-decoration: none;
+}
+
+.text-recipes {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.recipe-list {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.render-recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  justify-content: space-around;
+}
+
+.btn-outline-light {
+  margin-top: 5px;
+  width: 300px;
+}
