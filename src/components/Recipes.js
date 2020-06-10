@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
-// import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
-// import DialogTitle from "@material-ui/core/DialogTitle";
-// import DialogContent from "@material-ui/core/DialogContent";
 import PropTypes from "prop-types";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles/index";
@@ -35,8 +32,7 @@ function Recipes({
   openEditForm,
   closeEditForm,
   isEditFormVisible,
-  id,
-  addRecipe,
+  currentRecipeId
 }) {
 
   useEffect(() => {
@@ -51,9 +47,9 @@ function Recipes({
 
   const classes = useStyles();
 
-  function remove(id) {
+  function remove(currentRecipeId) {
     if (window.confirm("Are you sure?")) {
-      onItemRemove(id);
+      onItemRemove(currentRecipeId);
     }
   }
 
@@ -97,7 +93,7 @@ function Recipes({
                   Edit This Recipe
                 </button>
                 <button className="btn btn-outline-primary">
-                  <NavLink className="nav-link" to={`/recipes/${id}`}>
+                  <NavLink className="nav-link" to={`/recipes/${currentRecipeId}`}>
                     Show details
                   </NavLink>
                 </button>

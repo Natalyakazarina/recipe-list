@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
 import Recipes from "../components/Recipes";
 import Actions from "./../actions/recipes";
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
   return {
     items: state.recipes.recipes,
     localStorageRecipesError: state.recipes.localStorageRecipesError,
     isEditFormVisible: state.recipes.isEditFormVisible,
-    // currentlyEditing: state.recipes.currentlyEditing,
-    editId: state.recipes.iditId,
     ...ownProps,
   };
 };
@@ -23,4 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
+export default connect(
+  withRouter,
+  mapStateToProps, mapDispatchToProps)
+  (Recipes);

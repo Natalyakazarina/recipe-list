@@ -18,7 +18,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(reducer, applyMiddleware(logger, sagaMiddleware));
 
-// sagaMiddleware.run(recipesSaga);
+sagaMiddleware.run(recipesSaga);
 
 ReactDOM.render(
   <React.StrictMode>

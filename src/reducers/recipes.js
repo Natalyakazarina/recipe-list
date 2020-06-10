@@ -40,7 +40,6 @@ const initialState = {
   recipes,
   localStorageRecipesError: "",
   addSuccessfully: false,
-  editId: null,
   isEditFormVisible: false,
   recipeData: null,
   fetchRecipeDataError: "",

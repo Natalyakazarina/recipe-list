@@ -28,13 +28,13 @@ const useStyles = makeStyles({
   },
 });
 
-const EditAddForm = ({ items, addRecipe, editRecipe, match, reset, addSuccessfully, currentRecipe, currentRecipeId }) => {
+const EditAddForm = ({ items, addRecipe, editRecipe, match, reset, addSuccessfully, currentRecipeId }) => {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  // const id = + match.params.currentRecipeId;
-  // const currentRecipe = items.find((item) => item.id === id);
+  const id = + match.params.currentRecipeId;
+  const currentRecipe = items.find((item) => item.id === id);
 
 
   useEffect(
