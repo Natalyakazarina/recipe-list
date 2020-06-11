@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import Actions from "./../actions/recipes";
 import AddRecipes from "../components/AddRecipes";
-import { withRouter } from "react-router-dom";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -21,7 +20,6 @@ const mapDispatchToProps = (dispatch, state) => {
 };
 
 export default connect(
-  withRouter,
   mapStateToProps,
   mapDispatchToProps
 )(AddRecipes);

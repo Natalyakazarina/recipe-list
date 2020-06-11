@@ -24,11 +24,8 @@ class RecipesService {
     return recipes;
   }
 
-  getData() {
-    const recipeData = window.localStorage.getItem(DATA_KEY);
-
-    
-
+  getData(currentRecipeId) {
+    const recipeData = window.localStorage.getItem(DATA_KEY(currentRecipeId));
     return recipeData;
   }
 }

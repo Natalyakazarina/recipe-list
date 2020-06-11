@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Redirect } from "react-router-dom";
+import {  useParams } from "react-router-dom";
+
 
 const useStyles = makeStyles({
   container: {
@@ -28,23 +30,22 @@ const useStyles = makeStyles({
   },
 });
 
-const EditAddForm = ({ items, addRecipe, editRecipe, match, reset, addSuccessfully, currentRecipeId }) => {
+const EditAddForm = ({items, addRecipe, editRecipe, match, reset, addSuccessfully, currentRecipeId}) => {
   const classes = useStyles();
+  
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  const id = + match.params.currentRecipeId;
-  const currentRecipe = items.find((item) => item.id === id);
-
+  let {currentRecipeId: id} = useParams();
 
   useEffect(
     (e) => {
-      if (currentRecipe) {
-        setName(currentRecipe.name);
-        setDescription(currentRecipe.description);
+      if (items) {
+        setName(items.name);
+        setDescription(items.description);
       }
     },
-    [currentRecipe]
+    [items]
   );
 
   const AddRecipeSubmit = (values) => {
@@ -57,7 +58,7 @@ const EditAddForm = ({ items, addRecipe, editRecipe, match, reset, addSuccessful
 
   const submit = (e, values) => {
     e.preventDefault(e)
-    if (match.params.hasOwnProperty('currentRecipeId')) EditRecipeSubmit(values)
+    if (items) EditRecipeSubmit(values)
     else AddRecipeSubmit(values)
   }
 

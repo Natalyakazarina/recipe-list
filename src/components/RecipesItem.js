@@ -8,10 +8,10 @@ import { useParams } from "react-router-dom";
 import Recipes from "../containers/Recipes";
 
 function RecipesItem({ recipeData, fetchRecipeData, fetchRecipeDataError }) {
-  let { currentRecipeId } = useParams();
+  let {currentRecipeId: id} = useParams();
 
   useEffect(() => {
-    fetchRecipeData(currentRecipeId);
+    fetchRecipeData();
   }, []);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function RecipesItem({ recipeData, fetchRecipeData, fetchRecipeDataError }) {
           </CardContent>
         </Card>
       )}
-      <Recipes currentRecipeId={+currentRecipeId} />
+      <Recipes currentRecipeId={+id} />
     </Container>
   );
 }
