@@ -17,12 +17,12 @@ function* fetchRecipes() {
 
 function* addRecipe(action) {
   try {
-    let currentRecipe = yield call(
+    let recipes = yield call(
       localStorageService.save,
-      action.payload.params
+      action.payload
     );
     yield put(
-      Actions["RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY"]({ currentRecipe })
+      Actions["RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY"](recipes)
     );
   } catch ({ message }) {
     console.error(message);
@@ -46,18 +46,9 @@ function* fetchRecipeData(action) {
 
 function* onItemRemove(action) {
   try {
-    let recipes = yield select(state => state.recipes.recipes);
-     let indexToRemove;
-    recipes.forEach((recipe, index) => {
-      if (recipe.id === action.payload.id) {
-        indexToRemove = index;
-      }
-    });
-    recipes.splice(indexToRemove, 1);
+    const recipes = yield call(localStorageService.remove, action.payload);
 
-    yield call(localStorageService.save, action.payload.id, recipes.splice(indexToRemove, 1));
-
-    yield put({ type: "RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY", payload: { recipes } });
+    yield put({ type: "RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY", payload: recipes });
   } catch ({ message }) {
     yield put({ type: "RECIPES/ADDED_NEW_RECIPE_ERROR", payload: { message } });
   }

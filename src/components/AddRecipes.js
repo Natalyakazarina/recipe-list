@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import {Redirect} from 'react-router-dom';
 
 import PropTypes from "prop-types";
 import Container from "@material-ui/core/Container";
@@ -27,9 +28,8 @@ const useStyles = makeStyles({
 function AddRecipes({
   addRecipe,
   errorMessage,
-  name,
-  description,
-  currentRecipeId,
+  addSuccessfully,
+  reset,
 }) {
   const classes = useStyles();
 
@@ -39,11 +39,15 @@ function AddRecipes({
     }
   }, [errorMessage]);
 
+  if (addSuccessfully) {
+    reset();
+    return <Redirect to="/recipes" />;
+  }
 
   return (
     <Container className={classes.container}>
       <div>
-        <EditAddForm  />
+        <EditAddForm onSubmit={addRecipe}  />
       </div>
     </Container>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
 import Container from "@material-ui/core/Container";
@@ -32,12 +32,9 @@ function Recipes({
   openEditForm,
   closeEditForm,
   isEditFormVisible,
-  currentRecipeId
+  currentRecipeId,
+  addRecipe
 }) {
-
-  useEffect(() => {
-    fetchRecipes();
-  }, [fetchRecipes]);
 
   useEffect(() => {
     if (localStorageRecipesError) {
@@ -46,6 +43,7 @@ function Recipes({
   }, [localStorageRecipesError]);
 
   const classes = useStyles();
+  const [currentItem, setCurrentItem] = useState(null);
 
   function remove(currentRecipeId) {
     if (window.confirm("Are you sure?")) {
@@ -53,8 +51,15 @@ function Recipes({
     }
   }
 
-  function openForm() {
+  function editRecipe(id) {
+    setCurrentItem(items.find((item) => item.id === id));
+
     openEditForm();
+  }
+
+  function onSaveRecipe(data) {
+    addRecipe(data);
+    closeEditForm();
   }
 
   return (
@@ -75,7 +80,7 @@ function Recipes({
             onClose={closeEditForm}
             aria-labelledby="form-dialog-title"
           >
-            <EditAddForm />
+            <EditAddForm onSubmit={onSaveRecipe} item={currentItem}/>
           </Dialog>
         </React.Fragment>
       }
@@ -89,7 +94,7 @@ function Recipes({
             <div className={classes.header}>
               <h3>{name}</h3>
               <div className="btn btn-group">
-                <button className="btn btn-outline-success" onClick={openForm}>
+                <button className="btn btn-outline-success" onClick={editRecipe.bind(this, id)}>
                   Edit This Recipe
                 </button>
                 <button className="btn btn-outline-primary">
