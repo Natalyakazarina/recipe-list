@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-const EditAddForm = ({items, addRecipe, editRecipe, match, reset, addSuccessfully, currentRecipeId}) => {
+const EditAddForm = ({onSubmit, item}) => {
   const classes = useStyles();
   
   const [name, setName] = useState("");
@@ -40,32 +40,40 @@ const EditAddForm = ({items, addRecipe, editRecipe, match, reset, addSuccessfull
 
   useEffect(
     (e) => {
-      if (items) {
-        setName(items.name);
-        setDescription(items.description);
+      if (item) {
+        setName(item.name);
+        setDescription(item.description);
       }
     },
-    [items]
+    [item]
   );
 
-  const AddRecipeSubmit = (values) => {
-    addRecipe(values);
+  // const AddRecipeSubmit = (values) => {
+  //   addRecipe(values);
+  // }
+
+  // const EditRecipeSubmit = (values) => {
+  //   editRecipe({ ...values, currentRecipeId })
+  // }
+
+  const submit = (e) => {
+    e.preventDefault(e);
+
+    const obj = {};
+    obj.name = name;
+    obj.description = description;
+
+    if (item) {
+      obj.id = item.id;
+    }
+
+    onSubmit(obj);
   }
 
-  const EditRecipeSubmit = (values) => {
-    editRecipe({ ...values, currentRecipeId })
-  }
-
-  const submit = (e, values) => {
-    e.preventDefault(e)
-    if (items) EditRecipeSubmit(values)
-    else AddRecipeSubmit(values)
-  }
-
-  if (addSuccessfully) {
-    reset();
-    return <Redirect to="/recipes" />;
-  }
+  // if (addSuccessfully) {
+  //   reset();
+  //   return <Redirect to="/recipes" />;
+  // }
 
   function clearForm() {
     setName("");
@@ -88,13 +96,14 @@ const EditAddForm = ({items, addRecipe, editRecipe, match, reset, addSuccessfull
 
   return (
     <div>
-      <form>
+      <form onSubmit={submit}>
         <div className="add-form">
           <DialogContent>
             <label className="label" htmlFor="name">
               Name
             </label>
             <TextField
+              required
               className={classes.texts}
               onChange={addField.bind(this, "Name")}
               autoFocus
@@ -110,6 +119,7 @@ const EditAddForm = ({items, addRecipe, editRecipe, match, reset, addSuccessfull
               Description
             </label>
             <TextField
+              required
               className={classes.texts}
               id="description"
               multiline
@@ -136,7 +146,6 @@ const EditAddForm = ({items, addRecipe, editRecipe, match, reset, addSuccessfull
               <button
                 type="submit"
                 className="changes btn btn-success"
-                onClick={submit}
               >
                 Submit
               </button>
@@ -149,8 +158,8 @@ const EditAddForm = ({items, addRecipe, editRecipe, match, reset, addSuccessfull
 };
 
 EditAddForm.propTypes = {
-  submit: PropTypes.func,
-  items: PropTypes.object,
+  onSubmit: PropTypes.func,
+  item: PropTypes.object,
 };
 
 export default EditAddForm;

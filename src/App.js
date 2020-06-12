@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -45,9 +45,13 @@ const useStyles = makeStyles({
   },
 });
 
-function App({ items }) {
+function App({ items, fetchRecipes }) {
 
   const classes = useStyles();
+
+  useEffect(() => {
+    fetchRecipes();
+  }, [fetchRecipes]);
 
   return (
     <div className="wrapper">
