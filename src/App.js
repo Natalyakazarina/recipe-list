@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -45,8 +45,7 @@ const useStyles = makeStyles({
   },
 });
 
-function App({ items, fetchRecipes }) {
-
+function App({ items, fetchRecipes, currentRecipeId }) {
   const classes = useStyles();
 
   useEffect(() => {
@@ -121,7 +120,15 @@ function App({ items, fetchRecipes }) {
               <div className="render-recipes">
                 {items.map(({ index, name }) => (
                   <div key={index}>
-                    <button className="btn btn-outline-light">{name}</button>
+                    <button className="btn btn-outline-light">
+                      <NavLink
+                        className="nav-links"
+                        activeClassName="active"
+                        to={`/recipes/${currentRecipeId}`}
+                      >
+                        {name}
+                      </NavLink>
+                    </button>
                   </div>
                 ))}
               </div>
@@ -137,7 +144,7 @@ function App({ items, fetchRecipes }) {
             <Route path="/recipes" exact>
               <Recipes />
             </Route>
-            <Route path="/recipe-item/:currentRecipeId">
+            <Route path="/recipes/:currentRecipeId">
               <RecipesItem />
             </Route>
           </Switch>

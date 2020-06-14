@@ -15,11 +15,11 @@ body {
 
 .main-block {
   display: flex;
-    flex-direction: column;
-    max-width: 60%;
-    max-height: 70%;
-    margin: auto;
-    overflow: hidden;
+  flex-direction: column;
+  max-width: 60%;
+  max-height: 70%;
+  margin: auto;
+  overflow: hidden;
 }
 
 .cutlery {
@@ -129,6 +129,8 @@ body {
   align-items: center;
   margin-top: 5px;
   justify-content: space-around;
+  overflow: auto;
+  height: 170px;
 }
 
 .btn-outline-light {

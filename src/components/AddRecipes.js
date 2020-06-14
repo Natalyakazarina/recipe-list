@@ -56,6 +56,8 @@ function AddRecipes({
 AddRecipes.propTypes = {
   errorMessage: PropTypes.string,
   addRecipe: PropTypes.func,
+  reset: PropTypes.func,
+  addSuccessfully: PropTypes.bool,
 };
 
 export default AddRecipes;

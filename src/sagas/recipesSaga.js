@@ -48,23 +48,23 @@ function* onItemRemove(action) {
   try {
     const recipes = yield call(localStorageService.remove, action.payload);
 
-    yield put({ type: "RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY", payload: recipes });
+    yield put(Actions["RECIPES/RECIPE_REMOVE_SUCCESSFULLY"]({ recipes })
+    );
   } catch ({ message }) {
-    yield put({ type: "RECIPES/ADDED_NEW_RECIPE_ERROR", payload: { message } });
+    yield put(Actions["RECIPES/RECIPE_REMOVE_ERROR"]({ message }));
   }
 }
 
 
 function* clearAll(action) {
+  console.log("let's clear it all");
   try {
-    let recipes = yield select(state => state.recipes.recipes);
-    recipes = [];
+    let recipes = yield call(localStorageService.clear);
 
-    yield call(localStorageService.save, action.payload, recipes);
-
-    yield put({ type: "RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY", payload: { recipes } });
+    yield put(Actions["RECIPES/ALL_REMOVE_SUCCESSFULLY"]({ recipes })
+    );
   } catch ({ message }) {
-    yield put({ type: "RECIPES/ADDED_NEW_RECIPE_ERROR", payload: { message } });
+    yield put(Actions["RECIPES/ALL_REMOVE_ERROR"]({ message }));
   }
 }
 
@@ -81,11 +81,12 @@ function* editRecipe(action) {
       recipes[indexToEdit].name = action.payload.name;
       recipes[indexToEdit].description = action.payload.description;
 
-    yield call(localStorageService.save, action.payload.params, recipes[indexToEdit].name,  recipes[indexToEdit].description);
+    yield call(localStorageService.save, action.payload.params, recipes[indexToEdit].name, recipes[indexToEdit].description);
 
-    yield put({ type: "RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY", payload: { recipes } });
+    yield put(Actions["RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY"]({ recipes })
+    );
   } catch ({ message }) {
-    yield put({ type: "RECIPES/ADDED_NEW_RECIPE_ERROR", payload: { message } });
+    yield put(Actions["RECIPES/ADDED_NEW_RECIPE_ERROR"]({ message }));
   }
 }
 

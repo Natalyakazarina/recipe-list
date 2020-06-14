@@ -63,14 +63,6 @@ const recipesReducer = handleActions(
       });
     },
 
-    [Actions["RECIPES/CLOSE_EDIT_FORM"]]: (state, action) => {
-      return update(state, {
-        $merge: {
-          isEditFormVisible: false,
-        },
-      });
-    },
-
     [Actions["RECIPES/OPEN_EDIT_FORM"]]: (state, action) => {
       return update(state, {
         $merge: {
@@ -79,18 +71,11 @@ const recipesReducer = handleActions(
       });
     },
 
-    [Actions["RECIPES/EDIT_RECIPE"]]: (state, action) => {
-      const editState = state.recipes.slice();
-      let indexToEdit;
-      editState.forEach((recipe, index) => {
-        if (recipe.id === action.payload.id) {
-          indexToEdit = index;
-        }
-      });
-      editState[indexToEdit].name = action.payload.name;
-      editState[indexToEdit].description = action.payload.description;
+    [Actions["RECIPES/CLOSE_EDIT_FORM"]]: (state, action) => {
       return update(state, {
-        $merge: { recipeList: editState },
+        $merge: {
+          isEditFormVisible: false,
+        },
       });
     },
 

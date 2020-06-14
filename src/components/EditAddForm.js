@@ -4,9 +4,7 @@ import { makeStyles } from "@material-ui/core/styles/index";
 import { NavLink } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import DialogContent from "@material-ui/core/DialogContent";
-import { Redirect } from "react-router-dom";
-import {  useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
   container: {
@@ -30,31 +28,20 @@ const useStyles = makeStyles({
   },
 });
 
-const EditAddForm = ({onSubmit, item}) => {
+const EditAddForm = ({ onSubmit, item }) => {
   const classes = useStyles();
-  
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  let {currentRecipeId: id} = useParams();
+  let { currentRecipeId: id } = useParams();
 
-  useEffect(
-    (e) => {
-      if (item) {
-        setName(item.name);
-        setDescription(item.description);
-      }
-    },
-    [item]
-  );
-
-  // const AddRecipeSubmit = (values) => {
-  //   addRecipe(values);
-  // }
-
-  // const EditRecipeSubmit = (values) => {
-  //   editRecipe({ ...values, currentRecipeId })
-  // }
+  useEffect(() => {
+    if (item) {
+      setName(item.name);
+      setDescription(item.description);
+    }
+  }, [item]);
 
   const submit = (e) => {
     e.preventDefault(e);
@@ -68,18 +55,13 @@ const EditAddForm = ({onSubmit, item}) => {
     }
 
     onSubmit(obj);
-  }
-
-  // if (addSuccessfully) {
-  //   reset();
-  //   return <Redirect to="/recipes" />;
-  // }
+  };
 
   function clearForm() {
     setName("");
     setDescription("");
   }
-  
+
   function addField(name, e) {
     switch (name) {
       case "Name":
@@ -143,10 +125,7 @@ const EditAddForm = ({onSubmit, item}) => {
               >
                 Reset
               </button>
-              <button
-                type="submit"
-                className="changes btn btn-success"
-              >
+              <button type="submit" className="changes btn btn-success">
                 Submit
               </button>
             </div>

@@ -27,15 +27,13 @@ const useStyles = makeStyles({
 function Recipes({
   items,
   onItemRemove,
-  fetchRecipes,
   localStorageRecipesError,
   openEditForm,
   closeEditForm,
   isEditFormVisible,
   currentRecipeId,
-  addRecipe
+  addRecipe,
 }) {
-
   useEffect(() => {
     if (localStorageRecipesError) {
       alert(localStorageRecipesError);
@@ -80,7 +78,7 @@ function Recipes({
             onClose={closeEditForm}
             aria-labelledby="form-dialog-title"
           >
-            <EditAddForm onSubmit={onSaveRecipe} item={currentItem}/>
+            <EditAddForm onSubmit={onSaveRecipe} item={currentItem} />
           </Dialog>
         </React.Fragment>
       }
@@ -94,11 +92,17 @@ function Recipes({
             <div className={classes.header}>
               <h3>{name}</h3>
               <div className="btn btn-group">
-                <button className="btn btn-outline-success" onClick={editRecipe.bind(this, id)}>
+                <button
+                  className="btn btn-outline-success"
+                  onClick={editRecipe.bind(this, id)}
+                >
                   Edit This Recipe
                 </button>
                 <button className="btn btn-outline-primary">
-                  <NavLink className="nav-link" to={`/recipes/${currentRecipeId}`}>
+                  <NavLink
+                    className="nav-link"
+                    to={`/recipes/${currentRecipeId}`}
+                  >
                     Show details
                   </NavLink>
                 </button>
@@ -123,8 +127,13 @@ function Recipes({
 Recipes.propTypes = {
   items: PropTypes.array,
   onItemRemove: PropTypes.func.isRequired,
-  fetchRecipes: PropTypes.func,
+  localStorageRecipesError: PropTypes.string,
   fetchRecipesErrorMessage: PropTypes.string,
+  // openEditForm: PropTypes.func,
+  // closeEditForm: PropTypes.func,
+  isEditFormVisible: PropTypes.bool,
+  currentRecipeId: PropTypes.number,
+  addRecipe: PropTypes.func,
 };
 
 export default Recipes;

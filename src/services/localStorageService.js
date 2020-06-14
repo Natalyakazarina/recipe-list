@@ -4,7 +4,10 @@ class RecipesService {
   constructor (){
     this.save=this.save.bind(this)
     this.remove=this.remove.bind(this)
+    this.clear=this.clear.bind(this)
+
   }
+
   save(data) {
     const currentRecipes = this.get();
     let newItem;
@@ -40,6 +43,13 @@ class RecipesService {
     return currentRecipes;
   }
 
+
+  clear() {
+    window.localStorage.clear();
+    console.log("Hello kitty");
+  }
+
+
   get() {
     const dataRaw = window.localStorage.getItem(DATA_KEY);
 
@@ -53,7 +63,8 @@ class RecipesService {
   }
 
   getData(currentRecipeId) {
-    const recipeData = window.localStorage.getItem(DATA_KEY(currentRecipeId));
+    console.log("a unique recipe is presented");
+    const recipeData = window.localStorage.getItem(DATA_KEY, currentRecipeId);
     return recipeData;
   }
 }

@@ -11,7 +11,7 @@ function RecipesItem({ recipeData, fetchRecipeData, fetchRecipeDataError }) {
   let {currentRecipeId: id} = useParams();
 
   useEffect(() => {
-    fetchRecipeData();
+    fetchRecipeData(id);
   }, []);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function RecipesItem({ recipeData, fetchRecipeData, fetchRecipeDataError }) {
           </CardContent>
         </Card>
       )}
-      <Recipes currentRecipeId={+id} />
+      {/* <Recipes currentRecipeId={+id} /> */}
     </Container>
   );
 }
