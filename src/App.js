@@ -118,13 +118,13 @@ function App({ items, fetchRecipes, currentRecipeId }) {
                 </NavLink>
               </MenuItem>
               <div className="render-recipes">
-                {items.map(({ index, name }) => (
+                {items.map(({ index, name, id }) => (
                   <div key={index}>
                     <button className="btn btn-outline-light">
                       <NavLink
                         className="nav-links"
                         activeClassName="active"
-                        to={`/recipes/${currentRecipeId}`}
+                        to={`/recipes/${id}`}
                       >
                         {name}
                       </NavLink>

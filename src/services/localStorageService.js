@@ -1,11 +1,11 @@
 const DATA_KEY = "DATA_KEY";
 
 class RecipesService {
-  constructor (){
-    this.save=this.save.bind(this)
-    this.remove=this.remove.bind(this)
-    this.clear=this.clear.bind(this)
-
+  constructor() {
+    this.save = this.save.bind(this)
+    this.remove = this.remove.bind(this)
+    this.clear = this.clear.bind(this)
+    this.getData = this.getData.bind(this)
   }
 
   save(data) {
@@ -63,9 +63,9 @@ class RecipesService {
   }
 
   getData(currentRecipeId) {
-    console.log("a unique recipe is presented");
-    const recipeData = window.localStorage.getItem(DATA_KEY, currentRecipeId);
-    return recipeData;
+    const recipes = this.get();
+
+    return recipes.find((recipe) => recipe.id === +currentRecipeId);
   }
 }
 
