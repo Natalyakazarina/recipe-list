@@ -38,6 +38,14 @@ const recipesReducer = handleActions(
       });
     },
 
+    [Actions["RECIPES/RECIPE_REMOVE_SUCCESSFULLY"]]: (state, action) => {
+      return update(state, {
+        $merge: {
+          recipes: action.payload,
+        },
+      });
+    },
+
     [Actions["RECIPES/ADDED_NEW_RECIPE_SUCCESSFULLY"]]: (state, action) => {
       return update(state, {
         $merge: {

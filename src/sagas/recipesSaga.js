@@ -48,7 +48,7 @@ function* onItemRemove(action) {
   try {
     const recipes = yield call(localStorageService.remove, action.payload);
 
-    yield put(Actions["RECIPES/RECIPE_REMOVE_SUCCESSFULLY"]({ recipes })
+    yield put(Actions["RECIPES/RECIPE_REMOVE_SUCCESSFULLY"]( recipes )
     );
   } catch ({ message }) {
     yield put(Actions["RECIPES/RECIPE_REMOVE_ERROR"]({ message }));
