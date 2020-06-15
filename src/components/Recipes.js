@@ -101,7 +101,7 @@ function Recipes({
                 <button className="btn btn-outline-primary">
                   <NavLink
                     className="nav-link"
-                    to={`/recipes/${currentRecipeId}`}
+                    to={`/recipes/${id}`}
                   >
                     Show details
                   </NavLink>
@@ -114,9 +114,9 @@ function Recipes({
                 </button>
               </div>
             </div>
-            <div>
+            {/* <div>
               <p>{description}</p>
-            </div>
+            </div> */}
           </li>
         ))}
       </ul>

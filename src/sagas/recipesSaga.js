@@ -33,9 +33,9 @@ function* addRecipe(action) {
 
 function* fetchRecipeData(action) {
   try {
-    let recipeData = yield call(localStorageService.getData);
+    let recipeData = yield call(localStorageService.getData, action.payload);
     yield put(
-      Actions["RECIPES/FETCH_RECIPE_DATA_SUCCESSFULLY"]({ recipeData })
+      Actions["RECIPES/FETCH_RECIPE_DATA_SUCCESSFULLY"](recipeData)
     );
   } catch ({ message }) {
     console.error(message);
